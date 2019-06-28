@@ -18,5 +18,11 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # order of urls matters here,
+    # Django reads this fiel from top to bottomself.
+    # When we requests /accounts/signup url, Django will first look in auth,
+    # not find it, and then proceed to the accounts app
+    path('account/', include('django.contrib.auth.urls')),
+    path('accounts/', include('accounts.urls')),
     path('', include('blog.urls')),
 ]
